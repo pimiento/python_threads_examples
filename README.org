@@ -1,0 +1,23 @@
+#+OPTIONS: toc:nil
+
+* Компиляция Cython
+  1. Для компиляции cython-скриптов в Linux вам понадобится установить некоторые зависимости
+     #+BEGIN_SRC shell :exports code
+       apt install build-essential
+       # поменяйте на используемую вами версию
+       apt install python3.8-dev
+       pip3 install cython --upgrade
+     #+END_SRC
+  2. генерируем C-файл
+    #+BEGIN_SRC shell :exports code
+      cython3 -D --embed -3 -o <scriptname>.c <scriptname>.pyx
+    #+END_SRC
+  3. компилируем бинарник
+     #+BEGIN_SRC shell :exports code
+       # поменяйте на используемую вами версию
+       gcc -Os -I /usr/include/python3.8 -o <scriptname> <scriptname>.c -lpython3.8 -lpthread -lm -lutil -ldl
+     #+END_SRC
+  4. можно запускать
+     #+BEGIN_SRC shell :exports code
+       ./<scriptname>
+     #+END_SRC
