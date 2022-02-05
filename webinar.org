@@ -1,4 +1,4 @@
-#+TITLE: Потоки и процессы. Celery
+#+TITLE: Потоки и процессы. Celery. MapReduce
 #+EMAIL: @pvavilin
 #+AUTHOR: @pvavilin
 #+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:https://orgmode.org/org-info.js
