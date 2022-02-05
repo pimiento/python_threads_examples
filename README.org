@@ -21,3 +21,22 @@
      #+BEGIN_SRC shell :exports code
        ./<scriptname>
      #+END_SRC
+
+* Установка контейнеров для MapReduce
+  1. Скачать docker-compose
+     #+BEGIN_SRC shell :exports code
+       git clone https://github.com/m-semnani/bd-infra.git
+       cd bd-infra
+     #+END_SRC
+  2. Установить контейнеры
+     #+BEGIN_SRC shell :exports code
+       docker-compose up -d
+     #+END_SRC
+  3. Зайти на NameNode
+     #+BEGIN_SRC shell :exports code
+       docker exec -it namenode bash
+     #+END_SRC
+  4. Установить Python на NameNode
+     #+BEGIN_SRC shell :exports code
+       apt install python
+     #+END_SRC

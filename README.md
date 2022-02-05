@@ -24,3 +24,28 @@
     ```shell
     ./<scriptname>
     ```
+
+
+# Установка контейнеров для MapReduce
+
+1.  Скачать docker-compose
+
+    ```shell
+    git clone https://github.com/m-semnani/bd-infra.git
+    cd bd-infra
+    ```
+2.  Установить контейнеры
+
+    ```shell
+    docker-compose up -d
+    ```
+3.  Зайти на NameNode
+
+    ```shell
+    docker exec -it namenode bash
+    ```
+4.  Установить Python на NameNode
+
+    ```shell
+    apt install python
+    ```
