@@ -13,7 +13,10 @@ for line in sys.stdin:
     line = line.strip()
 
     # parse the input we got from mapper.py
-    word, count = line.split('\t', 1)
+    try:
+        word, count = line.split('\t', 1)
+    except:
+        continue
 
     # convert count (currently a string) to int
     try:
