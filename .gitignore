@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Org-mode artefacts
+_minted-webinar/
+auto/
+*.tex
+org-src*

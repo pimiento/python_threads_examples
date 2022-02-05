@@ -1,0 +1,79 @@
+#+TITLE: Потоки и процессы. Celery
+#+EMAIL: @pvavilin
+#+AUTHOR: @pvavilin
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:https://orgmode.org/org-info.js
+#+startup: beamer
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [smallest]
+#+LATEX_HEADER: \usetheme{default}
+#+LATEX_HEADER: \usecolortheme{crane}
+#+LATEX_HEADER: \RequirePackage{fancyvrb}
+#+LATEX_HEADER: \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\scriptsize}
+#+LaTeX_HEADER: \lstset{basicstyle=\scriptsize\ttfamily}
+#+OPTIONS: \n:t ^:nil
+* Процесс
+  Это программа, находящаяся в режиме выполнения. Операционная система подгружает в оперативную память с каждым процессом
+  - Саму программу
+  - Данные к программе
+  - Стек программы
+  Переключение между процессами происходит на уровне ядра.
+* Поток
+  - Каждый процесс состоит из минимум одного потока.
+  - Потоки разделяют общее адресное пространство процесса.
+  Переключение между потоками может происходить как на уровне ядра, так и на уровне пользователя (процесса).
+* Что можно узнать про процесс?
+    #+BEGIN_SRC shell :exports code
+      ps alx
+    #+END_SRC
+    #+BEGIN_SRC shell :exports code
+      ls -l /proc/<PID>/
+    #+END_SRC
+* создание процессов
+  Для создания нового процесса используются системные вызовы копирования процесса:
+  - fork :: UNIX-системы
+  - CreateProcess :: Win2k-системы
+* CPU-bound / IO-bound задачи
+  - CPU-bound :: задачи, которые активно используют CPU. Арифметические операции, матричные вычисления, поиск строк, и т.д.
+  - IO-bound :: задачи, связанные с вводом-выводом данных. Работа с сетью, с файловыми системами, с пользовательским вводом
+* GIL
+  __[[https://github.com/python/cpython/blob/e62a694fee53ba7fc16d6afbaa53b373c878f300/Python/ceval.c#L238][Python/ceval.c]]__
+  #+BEGIN_SRC C :exports code
+    /* This is the GIL */
+    static PyThread_type_lock
+           interpreter_lock = 0;
+  #+END_SRC
+* GIL
+  GIL гарантирует интерпретатору, что только один /поток/ может быть запущен в текущий момент. Это сделано для безопасной работы управления памятью, вызова расширений написанных на других языках (на C).
+* GIL
+  [[file:///home/pimiento/yap/GIL.png]]
+  - sys.getcheckinterval()  # -> Python2
+  - sys.getswitchinterval() # -> Python3
+* GIL
+  GIL замедляет CPU-bound задачи. Старая реализация GIL очень плохо работала с /CPU-bound + IO-bound/ задачами. __[[https://dabeaz.blogspot.com/2010/01/python-gil-visualized.html][Пример]]__
+* Практика
+  __[[https://github.com/pimiento/python_threads_examples/][GitHub]]__
+* Дополнительная литература
+  - __[[https://realpython.com/python-gil/][GIL]]__
+  - __[[https://www.dabeaz.com/python/UnderstandingGIL.pdf][UnderstandingGIL.pdf]]__
+  - __[[https://opensource.com/article/17/4/grok-gil][Groking The GIL]]__
+  - __[[https://docs.python.org/3/library/multiprocessing.html][multiprocessing]]__
+* Что такое Celery?
+  __[[https://docs.celeryproject.org/en/stable/getting-started/introduction.html][Официальная документация]]__
+  \newline{}
+  /Celery/ это брокер задач, который позволяет в фоновом, асинхронном режиме выполнять задачи в отдельных процессах/тредах и/или на других машинах.
+* Практика запуска задач на Celery
+  #+BEGIN_SRC shell :exports code
+    pip install celery
+    apt install rabbitmq-server
+  #+END_SRC
+* Что такое map-reduce
+  Это процесс решения больших задач при помощи разбивки данных на части и решения задач с частями данных на разных машинах. MapReduce состоит из обязательных шагов:
+  1. Map — разбить данные на блоки (присвоить каждой записи некоторый ключ блока)
+  2. Shuffle — присвоить каждому блоку некоторый ключ (/не-уникальный/ между всеми блоками)
+  3. Reduce — для каждого ключа выполнить некоторую функцию над всеми данными в этом ключе
+* Практика запуска map-reduce на pyspark
+  __[[https://github.com/pimiento/python_threads_examples/][GitHub]]__
+  /[[https://medium.com/analytics-vidhya/how-to-easily-install-hadoop-with-docker-ad094d556f11][тестовая сборка для работы с Hadoop]] (надо дополнительно поставить python на namenode)/
+* Вопросы-ответы
+  #+ATTR_LATEX: :width .6\textwidth
+  [[file:///home/pimiento/yap/questions.jpg]]
