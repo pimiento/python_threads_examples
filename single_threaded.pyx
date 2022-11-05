@@ -11,7 +11,7 @@ cdef void countdown(n: int):
         n -= 1
 
 
-start : float = time.time()
+start : float = time.process_time()
 countdown(COUNT)
-end : float = time.time()
+end : float = time.process_time()
 print(f"Time taken in seconds: {end - start:.2f}")

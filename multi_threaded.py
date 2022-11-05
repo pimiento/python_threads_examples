@@ -14,11 +14,11 @@ def countdown(n):
 t1 = Thread(target=countdown, args=(COUNT//2,))
 t2 = Thread(target=countdown, args=(COUNT//2,))
 
-start = time.time()
+start = time.process_time()
 t1.start()
 t2.start()
 t1.join()
 t2.join()
-end = time.time()
+end = time.process_time()
 
 print(f"Time taken in seconds: {end - start:.2f}")

@@ -11,8 +11,8 @@ def countdown(n):
         n -= 1
 
 
-start = time.time()
+start = time.process_time()
 countdown(COUNT)
-end = time.time()
+end = time.process_time()
 
 print(f"Time taken in seconds: {end - start:.2f}")

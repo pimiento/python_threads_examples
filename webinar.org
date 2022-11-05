@@ -49,13 +49,14 @@
   - sys.getcheckinterval()  # -> Python2
   - sys.getswitchinterval() # -> Python3
 * GIL
-  GIL замедляет CPU-bound задачи. Старая реализация GIL очень плохо работала с /CPU-bound + IO-bound/ задачами. __[[https://dabeaz.blogspot.com/2010/01/python-gil-visualized.html][Пример]]__
+  GIL замедляет CPU-bound задачи. Старая реализация GIL очень плохо работала с /CPU-bound + IO-bound/ задачами. __[[https://dabeaz.blogspot.com/2010/01/python-gil-visualized.html][Пример]]__, да и новая не лучше.
 * Практика
   __[[https://github.com/pimiento/python_threads_examples/][GitHub]]__
 * Дополнительная литература
   - __[[https://realpython.com/python-gil/][GIL]]__
   - __[[https://www.dabeaz.com/python/UnderstandingGIL.pdf][UnderstandingGIL.pdf]]__
   - __[[https://opensource.com/article/17/4/grok-gil][Groking The GIL]]__
+  - __[[https://habr.com/ru/post/592189/][GIL и его влияние на многопоточность в Python]]__
   - __[[https://docs.python.org/3/library/multiprocessing.html][multiprocessing]]__
 * Что такое Celery?
   __[[https://docs.celeryproject.org/en/stable/getting-started/introduction.html][Официальная документация]]__
@@ -66,6 +67,7 @@
     pip install celery
     apt install rabbitmq-server
   #+END_SRC
+  - __[[https://docs.celeryq.dev/en/stable/getting-started/next-steps.html#groups][Можно описывать сложные последовательности]]__
 * Что такое map-reduce
   Это процесс решения больших задач при помощи разбивки данных на части и решения задач с частями данных на разных машинах. MapReduce состоит из обязательных шагов:
   1. Map — разбить данные на блоки (присвоить каждой записи некоторый ключ блока)
