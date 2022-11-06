@@ -31,8 +31,8 @@
 1.  Скачать docker-compose
     
     ```shell
-    git clone https://github.com/m-semnani/bd-infra.git
-    cd bd-infra
+    git clone https://github.com/pimiento/mapreduce-example-infra.git
+    cd mapreduce-example-infra
     ```
 2.  Установить контейнеры
     
@@ -44,9 +44,8 @@
     ```shell
     docker exec -it namenode bash
     ```
-4.  Установить Python на NameNode
+4.  Выполнить донастройку NameNode
     
     ```shell
-    apt update
-    apt install python
+    cd /root && ./start.sh
     ```
