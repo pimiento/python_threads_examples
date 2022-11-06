@@ -83,7 +83,7 @@
     #+END_SRC
 * Практика запуска map-reduce на pyspark
   - запуск на NameNode
-    #+BEGIN_SRC shell :exports code
+    #+BEGIN_SRC shell :exports code :tangle run_mapreduce.sh :shebang "#!/bin/bash"
       hdfs dfs -rmdir\
            --ignore-fail-on-non-empty\
            /d/out

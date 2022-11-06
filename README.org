@@ -38,5 +38,6 @@
      #+END_SRC
   4. Установить Python на NameNode
      #+BEGIN_SRC shell :exports code
+       apt update
        apt install python
      #+END_SRC
