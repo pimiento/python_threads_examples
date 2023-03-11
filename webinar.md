@@ -1,24 +1,24 @@
-- [Процесс](#org6dd6899)
-- [Поток](#orgc9c961a)
-- [Что можно узнать про процесс?](#org59af907)
-- [создание процессов](#org765f9ae)
-- [CPU-bound / IO-bound задачи](#orgcc64b3a)
-- [GIL](#orgb689542)
-- [GIL](#org316b855)
-- [GIL](#orgbc00acd)
-- [GIL](#org8b3d46a)
-- [Практика](#orgf605c93)
-- [Дополнительная литература](#org078e40d)
-- [Что такое Celery?](#org2a8f169)
-- [Практика запуска задач на Celery](#org99b935d)
-- [Что такое map-reduce](#org05c4f7c)
-- [Практика запуска map-reduce на pyspark](#org2cf3038)
-- [Практика запуска map-reduce на pyspark](#orgbb64a65)
-- [Вопросы-ответы](#orgae31ab3)
+- [Процесс](#org5462f95)
+- [Поток](#orgee5cb08)
+- [Что можно узнать про процесс?](#org0af10b3)
+- [создание процессов](#org3fa51d9)
+- [CPU-bound / IO-bound задачи](#org37135aa)
+- [GIL](#orgdd6460d)
+- [GIL](#org3bdf677)
+- [GIL](#org87eb7e5)
+- [GIL](#org285fe74)
+- [Практика](#org0a693c4)
+- [Дополнительная литература](#orge48836f)
+- [Что такое Celery?](#org3a64cf7)
+- [Практика запуска задач на Celery](#orgf34b2f0)
+- [Что такое map-reduce](#org672c593)
+- [Практика запуска map-reduce на pyspark](#org98a8d38)
+- [Практика запуска map-reduce на pyspark](#org5394ae7)
+- [Вопросы-ответы](#org9220784)
 
 
 
-<a id="org6dd6899"></a>
+<a id="org5462f95"></a>
 
 # Процесс
 
@@ -31,7 +31,7 @@
 Переключение между процессами происходит на уровне ядра.  
 
 
-<a id="orgc9c961a"></a>
+<a id="orgee5cb08"></a>
 
 # Поток
 
@@ -41,7 +41,7 @@
 Переключение между потоками может происходить как на уровне ядра, так и на уровне пользователя (процесса).  
 
 
-<a id="org59af907"></a>
+<a id="org0af10b3"></a>
 
 # Что можно узнать про процесс?
 
@@ -54,7 +54,7 @@ ls -l /proc/<PID>/
 ```
 
 
-<a id="org765f9ae"></a>
+<a id="org3fa51d9"></a>
 
 # создание процессов
 
@@ -64,7 +64,7 @@ ls -l /proc/<PID>/
 -   **CreateProcess:** Win2k-системы
 
 
-<a id="orgcc64b3a"></a>
+<a id="org37135aa"></a>
 
 # CPU-bound / IO-bound задачи
 
@@ -72,7 +72,7 @@ ls -l /proc/<PID>/
 -   **IO-bound:** задачи, связанные с вводом-выводом данных. Работа с сетью, с файловыми системами, с пользовательским вводом
 
 
-<a id="orgb689542"></a>
+<a id="orgdd6460d"></a>
 
 # GIL
 
@@ -85,14 +85,14 @@ static PyThread_type_lock
 ```
 
 
-<a id="org316b855"></a>
+<a id="org3bdf677"></a>
 
 # GIL
 
 GIL гарантирует интерпретатору, что только один *поток* может быть запущен в текущий момент. Это сделано для безопасной работы управления памятью, вызова расширений написанных на других языках (на C).  
 
 
-<a id="orgbc00acd"></a>
+<a id="org87eb7e5"></a>
 
 # GIL
 
@@ -102,21 +102,21 @@ GIL гарантирует интерпретатору, что только о�
 -   sys.getswitchinterval() # -> Python3
 
 
-<a id="org8b3d46a"></a>
+<a id="org285fe74"></a>
 
 # GIL
 
 GIL замедляет CPU-bound задачи. Старая реализация GIL очень плохо работала с *CPU-bound + IO-bound* задачами. <span class="underline"><span class="underline">[Пример](https://dabeaz.blogspot.com/2010/01/python-gil-visualized.html)</span></span>, да и новая не лучше.  
 
 
-<a id="orgf605c93"></a>
+<a id="org0a693c4"></a>
 
 # Практика
 
 <span class="underline"><span class="underline">[GitHub](https://github.com/pimiento/python_threads_examples/)</span></span>  
 
 
-<a id="org078e40d"></a>
+<a id="orge48836f"></a>
 
 # Дополнительная литература
 
@@ -127,7 +127,7 @@ GIL замедляет CPU-bound задачи. Старая реализация
 -   <span class="underline"><span class="underline">[multiprocessing](https://docs.python.org/3/library/multiprocessing.html)</span></span>
 
 
-<a id="org2a8f169"></a>
+<a id="org3a64cf7"></a>
 
 # Что такое Celery?
 
@@ -136,7 +136,7 @@ GIL замедляет CPU-bound задачи. Старая реализация
 *Celery* это брокер задач, который позволяет в фоновом, асинхронном режиме выполнять задачи в отдельных процессах/тредах и/или на других машинах.  
 
 
-<a id="org99b935d"></a>
+<a id="orgf34b2f0"></a>
 
 # Практика запуска задач на Celery
 
@@ -148,7 +148,7 @@ apt install rabbitmq-server
 -   <span class="underline"><span class="underline">[Можно описывать сложные последовательности](https://docs.celeryq.dev/en/stable/getting-started/next-steps.html#groups)</span></span>
 
 
-<a id="org05c4f7c"></a>
+<a id="org672c593"></a>
 
 # Что такое map-reduce
 
@@ -159,7 +159,7 @@ apt install rabbitmq-server
 3.  Reduce — для каждого ключа выполнить некоторую функцию над всеми данными в этом ключе
 
 
-<a id="org2cf3038"></a>
+<a id="org98a8d38"></a>
 
 # Практика запуска map-reduce на pyspark
 
@@ -167,22 +167,16 @@ apt install rabbitmq-server
 
 -   <span class="underline"><span class="underline">[mapper.py](https://github.com/pimiento/python_threads_examples/blob/main/mapper.py)</span></span>
 -   <span class="underline"><span class="underline">[reducer.py](https://github.com/pimiento/python_threads_examples/blob/main/reducer.py)</span></span>
--   создадим директорию в HDFS для данных и вывода (на NameNode)  
-    
-    ```shell
-    hdfs dfs -mkdir /d
-    ```
 
 
-<a id="orgbb64a65"></a>
+<a id="org5394ae7"></a>
 
 # Практика запуска map-reduce на pyspark
 
 -   запуск на NameNode  
     
     ```shell
-    hdfs dfs -rmdir\
-         --ignore-fail-on-non-empty\
+    hdfs dfs -rm -r -skipTrash\
          /d/out
     hadoop jar /opt/hadoop-2.7.4/share\
            /hadoop/tools/lib/\
@@ -191,13 +185,13 @@ apt install rabbitmq-server
            /root/reducer.py\
            -mapper /root/mapper.py\
            -reducer /root/reducer.py\
-           -input /d/out/98.txt\
+           -input /d/in/98.txt\
            -output /d/out
     hdfs dfs -cat /d/out/part-00000
     ```
 
 
-<a id="orgae31ab3"></a>
+<a id="org9220784"></a>
 
 # Вопросы-ответы
 

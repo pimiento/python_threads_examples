@@ -77,15 +77,10 @@
   /[[https://medium.com/analytics-vidhya/how-to-easily-install-hadoop-with-docker-ad094d556f11][тестовая сборка для работы с Hadoop]] (надо дополнительно поставить python на namenode)/
   - __[[https://github.com/pimiento/python_threads_examples/blob/main/mapper.py][mapper.py]]__
   - __[[https://github.com/pimiento/python_threads_examples/blob/main/reducer.py][reducer.py]]__
-  - создадим директорию в HDFS для данных и вывода (на NameNode)
-    #+BEGIN_SRC shell
-      hdfs dfs -mkdir /d
-    #+END_SRC
 * Практика запуска map-reduce на pyspark
   - запуск на NameNode
     #+BEGIN_SRC shell :exports code
-      hdfs dfs -rmdir\
-           --ignore-fail-on-non-empty\
+      hdfs dfs -rm -r -skipTrash\
            /d/out
       hadoop jar /opt/hadoop-2.7.4/share\
              /hadoop/tools/lib/\
@@ -94,15 +89,15 @@
              /root/reducer.py\
              -mapper /root/mapper.py\
              -reducer /root/reducer.py\
-             -input /d/out/98.txt\
+             -input /d/in/98.txt\
              -output /d/out
       hdfs dfs -cat /d/out/part-00000
     #+END_SRC
 
     #+BEGIN_SRC shell :exports none :tangle run_mapreduce.sh :shebang "#!/bin/bash"
-      hdfs dfs -rmdir --ignore-fail-on-non-empty /d/out
-      hadoop jar /opt/hadoop-2.7.4/share/hadoop/tools/lib/hadoop-streaming-2.7.4.jar -files /root/mapper.py, /root/reducer.py -mapper /root/mapper.py -reducer /root/reducer.py -input /d/out/98.txt -output /d/out
-      hdfs dfs -cat /d/out/part-00000
+      hdfs dfs -rm -r -skipTrash /d/out
+      hadoop jar /opt/hadoop-2.7.4/share/hadoop/tools/lib/hadoop-streaming-2.7.4.jar -files /root/mapper.py, /root/reducer.py -mapper /root/mapper.py -reducer /root/reducer.py -input /d/in/98.txt -output /d/out
+      hdfs dfs -cat /d/out/part-00000 | sort -k2 -n
     #+END_SRC
 
 * Вопросы-ответы
