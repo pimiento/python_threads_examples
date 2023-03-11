@@ -1,24 +1,25 @@
-- [Процесс](#org5462f95)
-- [Поток](#orgee5cb08)
-- [Что можно узнать про процесс?](#org0af10b3)
-- [создание процессов](#org3fa51d9)
-- [CPU-bound / IO-bound задачи](#org37135aa)
-- [GIL](#orgdd6460d)
-- [GIL](#org3bdf677)
-- [GIL](#org87eb7e5)
-- [GIL](#org285fe74)
-- [Практика](#org0a693c4)
-- [Дополнительная литература](#orge48836f)
-- [Что такое Celery?](#org3a64cf7)
-- [Практика запуска задач на Celery](#orgf34b2f0)
-- [Что такое map-reduce](#org672c593)
-- [Практика запуска map-reduce на pyspark](#org98a8d38)
-- [Практика запуска map-reduce на pyspark](#org5394ae7)
-- [Вопросы-ответы](#org9220784)
+- [Процесс](#orgdce21ae)
+- [Поток](#org899e90b)
+- [Что можно узнать про процесс?](#orgfb9a80d)
+- [создание процессов](#org9a5aa98)
+- [CPU-bound / IO-bound задачи](#orgb15f906)
+- [GIL](#org0a72ae4)
+- [GIL](#orgc07038f)
+- [GIL](#orgf68f849)
+- [GIL](#org590eacd)
+- [Практика](#orgffa42c4)
+- [Дополнительная литература](#orgd9c5aae)
+- [Что такое Celery?](#orge2ecbad)
+- [Практика запуска задач на Celery](#org959a42c)
+- [Практика запуска задач на Celery](#org6ad8e52)
+- [Что такое map-reduce](#orgf8b3195)
+- [Практика запуска map-reduce на pyspark](#org225a94f)
+- [Практика запуска map-reduce на pyspark](#org68827c3)
+- [Вопросы-ответы](#org48e2a02)
 
 
 
-<a id="org5462f95"></a>
+<a id="orgdce21ae"></a>
 
 # Процесс
 
@@ -31,7 +32,7 @@
 Переключение между процессами происходит на уровне ядра.  
 
 
-<a id="orgee5cb08"></a>
+<a id="org899e90b"></a>
 
 # Поток
 
@@ -41,7 +42,7 @@
 Переключение между потоками может происходить как на уровне ядра, так и на уровне пользователя (процесса).  
 
 
-<a id="org0af10b3"></a>
+<a id="orgfb9a80d"></a>
 
 # Что можно узнать про процесс?
 
@@ -54,7 +55,7 @@ ls -l /proc/<PID>/
 ```
 
 
-<a id="org3fa51d9"></a>
+<a id="org9a5aa98"></a>
 
 # создание процессов
 
@@ -64,7 +65,7 @@ ls -l /proc/<PID>/
 -   **CreateProcess:** Win2k-системы
 
 
-<a id="org37135aa"></a>
+<a id="orgb15f906"></a>
 
 # CPU-bound / IO-bound задачи
 
@@ -72,7 +73,7 @@ ls -l /proc/<PID>/
 -   **IO-bound:** задачи, связанные с вводом-выводом данных. Работа с сетью, с файловыми системами, с пользовательским вводом
 
 
-<a id="orgdd6460d"></a>
+<a id="org0a72ae4"></a>
 
 # GIL
 
@@ -85,38 +86,38 @@ static PyThread_type_lock
 ```
 
 
-<a id="org3bdf677"></a>
+<a id="orgc07038f"></a>
 
 # GIL
 
 GIL гарантирует интерпретатору, что только один *поток* может быть запущен в текущий момент. Это сделано для безопасной работы управления памятью, вызова расширений написанных на других языках (на C).  
 
 
-<a id="org87eb7e5"></a>
+<a id="orgf68f849"></a>
 
 # GIL
 
-![img](/home/pimiento/yap/GIL.png)  
+![img](GIL.png)  
 
 -   sys.getcheckinterval()  # -> Python2
 -   sys.getswitchinterval() # -> Python3
 
 
-<a id="org285fe74"></a>
+<a id="org590eacd"></a>
 
 # GIL
 
 GIL замедляет CPU-bound задачи. Старая реализация GIL очень плохо работала с *CPU-bound + IO-bound* задачами. <span class="underline"><span class="underline">[Пример](https://dabeaz.blogspot.com/2010/01/python-gil-visualized.html)</span></span>, да и новая не лучше.  
 
 
-<a id="org0a693c4"></a>
+<a id="orgffa42c4"></a>
 
 # Практика
 
 <span class="underline"><span class="underline">[GitHub](https://github.com/pimiento/python_threads_examples/)</span></span>  
 
 
-<a id="orge48836f"></a>
+<a id="orgd9c5aae"></a>
 
 # Дополнительная литература
 
@@ -127,7 +128,7 @@ GIL замедляет CPU-bound задачи. Старая реализация
 -   <span class="underline"><span class="underline">[multiprocessing](https://docs.python.org/3/library/multiprocessing.html)</span></span>
 
 
-<a id="org3a64cf7"></a>
+<a id="orge2ecbad"></a>
 
 # Что такое Celery?
 
@@ -136,7 +137,7 @@ GIL замедляет CPU-bound задачи. Старая реализация
 *Celery* это брокер задач, который позволяет в фоновом, асинхронном режиме выполнять задачи в отдельных процессах/тредах и/или на других машинах.  
 
 
-<a id="orgf34b2f0"></a>
+<a id="org959a42c"></a>
 
 # Практика запуска задач на Celery
 
@@ -148,7 +149,16 @@ apt install rabbitmq-server
 -   <span class="underline"><span class="underline">[Можно описывать сложные последовательности](https://docs.celeryq.dev/en/stable/getting-started/next-steps.html#groups)</span></span>
 
 
-<a id="org672c593"></a>
+<a id="org6ad8e52"></a>
+
+# Практика запуска задач на Celery
+
+```shell
+
+```
+
+
+<a id="orgf8b3195"></a>
 
 # Что такое map-reduce
 
@@ -159,7 +169,7 @@ apt install rabbitmq-server
 3.  Reduce — для каждого ключа выполнить некоторую функцию над всеми данными в этом ключе
 
 
-<a id="org98a8d38"></a>
+<a id="org225a94f"></a>
 
 # Практика запуска map-reduce на pyspark
 
@@ -169,7 +179,7 @@ apt install rabbitmq-server
 -   <span class="underline"><span class="underline">[reducer.py](https://github.com/pimiento/python_threads_examples/blob/main/reducer.py)</span></span>
 
 
-<a id="org5394ae7"></a>
+<a id="org68827c3"></a>
 
 # Практика запуска map-reduce на pyspark
 
@@ -191,8 +201,8 @@ apt install rabbitmq-server
     ```
 
 
-<a id="org9220784"></a>
+<a id="org48e2a02"></a>
 
 # Вопросы-ответы
 
-![img](/home/pimiento/yap/questions.jpg)
+![img](questions.jpg)

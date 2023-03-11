@@ -45,7 +45,7 @@
 * GIL
   GIL гарантирует интерпретатору, что только один /поток/ может быть запущен в текущий момент. Это сделано для безопасной работы управления памятью, вызова расширений написанных на других языках (на C).
 * GIL
-  [[file:///home/pimiento/yap/GIL.png]]
+  [[file:GIL.png]]
   - sys.getcheckinterval()  # -> Python2
   - sys.getswitchinterval() # -> Python3
 * GIL
@@ -68,6 +68,10 @@
     apt install rabbitmq-server
   #+END_SRC
   - __[[https://docs.celeryq.dev/en/stable/getting-started/next-steps.html#groups][Можно описывать сложные последовательности]]__
+* Практика запуска задач на Celery
+  #+begin_src shell :export code
+
+  #+end_src
 * Что такое map-reduce
   Это процесс решения больших задач при помощи разбивки данных на части и решения задач с частями данных на разных машинах. MapReduce состоит из обязательных шагов:
   1. Map — разбить данные на блоки (присвоить каждой записи некоторый ключ блока)
@@ -102,4 +106,4 @@
 
 * Вопросы-ответы
   #+ATTR_LATEX: :width .6\textwidth
-  [[file:///home/pimiento/yap/questions.jpg]]
+  [[file:questions.jpg]]
