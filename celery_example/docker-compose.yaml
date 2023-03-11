@@ -1,0 +1,103 @@
+version: '3.8'
+
+services:
+ u1:
+   container_name: u1
+   image: nginx:1.19.3
+   ports:
+     - 9191:80
+ u2:
+   container_name: u2
+   image: nginx:1.19.3
+   ports:
+     - 9192:80
+ u3:
+   container_name: u3
+   image: nginx:1.19.3
+   ports:
+     - 9193:80
+ u4:
+   container_name: u4
+   image: nginx:1.19.3
+   ports:
+     - 9194:80
+ u5:
+   container_name: u5
+   image: nginx:1.19.3
+   ports:
+     - 9195:80
+ u6:
+   container_name: u6
+   image: nginx:1.19.3
+   ports:
+     - 9196:80
+ u7:
+   container_name: u7
+   image: nginx:1.19.3
+   ports:
+     - 9197:80
+ u8:
+   container_name: u8
+   image: nginx:1.19.3
+   ports:
+     - 9198:80
+ u9:
+   container_name: u9
+   image: nginx:1.19.3
+   ports:
+     - 9199:80
+ u10:
+   container_name: u10
+   image: nginx:1.19.3
+   ports:
+     - 9190:80
+ u11:
+   container_name: u11
+   image: nginx:1.19.3
+   ports:
+     - 9291:80
+ u12:
+   container_name: u12
+   image: nginx:1.19.3
+   ports:
+     - 9292:80
+ u13:
+   container_name: u13
+   image: nginx:1.19.3
+   ports:
+     - 9293:80
+ u14:
+   container_name: u14
+   image: nginx:1.19.3
+   ports:
+     - 9294:80
+ u15:
+   container_name: u15
+   image: nginx:1.19.3
+   ports:
+     - 9295:80
+ u16:
+   container_name: u16
+   image: nginx:1.19.3
+   ports:
+     - 9296:80
+ u17:
+   container_name: u17
+   image: nginx:1.19.3
+   ports:
+     - 9297:80
+ u18:
+   container_name: u18
+   image: nginx:1.19.3
+   ports:
+     - 9298:80
+ u19:
+   container_name: u19
+   image: nginx:1.19.3
+   ports:
+     - 9299:80
+ u20:
+   container_name: u20
+   image: nginx:1.19.3
+   ports:
+     - 9290:80
