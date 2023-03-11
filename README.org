@@ -36,7 +36,7 @@
      #+BEGIN_SRC shell :exports code
        docker exec -it namenode bash
      #+END_SRC
-  4. Выполнить донастройку NameNode
+  4. Выполнить код
      #+BEGIN_SRC shell :exports code
-       cd /root && ./start.sh
+       ./run_mapreduce.sh
      #+END_SRC

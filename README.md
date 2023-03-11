@@ -44,8 +44,8 @@
     ```shell
     docker exec -it namenode bash
     ```
-4.  Выполнить донастройку NameNode
+4.  Выполнить код
     
     ```shell
-    cd /root && ./start.sh
+    ./run_mapreduce.sh
     ```
