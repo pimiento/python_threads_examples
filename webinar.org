@@ -70,7 +70,10 @@
   - __[[https://docs.celeryq.dev/en/stable/getting-started/next-steps.html#groups][Можно описывать сложные последовательности]]__
 * Практика запуска задач на Celery
   #+begin_src shell :export code
-
+    celery -A tasks worker --loglevel=INFO
+  #+end_src
+  #+begin_src shell :export code
+    cd celery_example && ./runner.py
   #+end_src
 * Что такое map-reduce
   Это процесс решения больших задач при помощи разбивки данных на части и решения задач с частями данных на разных машинах. MapReduce состоит из обязательных шагов:
