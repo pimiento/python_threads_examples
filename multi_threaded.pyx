@@ -6,7 +6,7 @@ from threading import Thread
 cdef int COUNT = int(5e8)
 
 
-cdef countdown(n: int):
+cdef void countdown(n: int):
     """Countdown"""
     while n > 0:
         n -= 1
