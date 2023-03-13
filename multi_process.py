@@ -10,11 +10,9 @@ def countdown(n: int) -> None:
         n -= 1
 
 if __name__ == '__main__':
-    pool = Pool(processes=2)
-    start: float = time.process_time()
-    r1 = pool.apply_async(countdown, [COUNT//2])
-    r2 = pool.apply_async(countdown, [COUNT//2])
+    p_count = 4
+    pool = Pool(processes=p_count)
+    for n in range(1, p_count+1):
+        pool.apply_async(countdown, [(COUNT//p_count) * n])
     pool.close()
     pool.join()
-    end: float = time.process_time()
-    print(f"Time taken in seconds: {end - start:.2f}")
