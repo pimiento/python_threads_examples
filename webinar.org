@@ -11,6 +11,7 @@
 #+LATEX_HEADER: \RequirePackage{fancyvrb}
 #+LATEX_HEADER: \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\scriptsize}
 #+LaTeX_HEADER: \lstset{basicstyle=\scriptsize\ttfamily}
+#+LATEX_HEADER: \usebackgroundtemplate{\includegraphics[width=.99\paperwidth,height=.99\paperheight]{bg.jpeg}}
 #+OPTIONS: \n:t ^:nil
 * Процесс
   Это программа, находящаяся в режиме выполнения. Операционная система подгружает в оперативную память с каждым процессом
@@ -81,11 +82,14 @@
   - __[[https://docs.celeryq.dev/en/stable/getting-started/next-steps.html#groups][Можно описывать сложные последовательности]]__
 * Практика запуска задач на Celery
   #+begin_src shell :export code
+    cd celery_example
+    docker compose up -d
     celery -A tasks worker --loglevel=INFO
+    ./runner.py
   #+end_src
-  #+begin_src shell :export code
-    cd celery_example && ./runner.py
-  #+end_src
+* Celery и Django
+  #+ATTR_LATEX: :width .7\textwidth
+  [[file:django_celery.png]]
 * Что такое map-reduce
   Это процесс решения больших задач при помощи разбивки данных на части и решения задач с частями данных на разных машинах. MapReduce состоит из обязательных шагов:
   1. Map — разбить данные на блоки (присвоить каждой записи некоторый ключ блока)

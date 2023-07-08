@@ -1,0 +1,4 @@
+celery
+redis
+docker
+django<=4
