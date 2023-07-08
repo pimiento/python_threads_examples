@@ -1,4 +1,4 @@
 celery
 redis
 docker
-django<=4
+django<4
