@@ -13,6 +13,9 @@
 #+LaTeX_HEADER: \lstset{basicstyle=\scriptsize\ttfamily}
 #+LATEX_HEADER: \usebackgroundtemplate{\includegraphics[width=.99\paperwidth,height=.99\paperheight]{bg.jpeg}}
 #+OPTIONS: \n:t ^:nil
+* Посещаемость
+  #+ATTR_LATEX: :width .57\textwidth
+  [[file:qrcode.png]]
 * Процесс
   Это программа, находящаяся в режиме выполнения. Операционная система подгружает в оперативную память с каждым процессом
   - Саму программу
@@ -90,6 +93,9 @@
 * Celery и Django
   #+ATTR_LATEX: :width .7\textwidth
   [[file:django_celery.png]]
+* Почитать
+  - [[https://habr.com/ru/companies/otus/articles/503380/][Habr]]
+  - [[https://django.fun/ru/articles/tutorials/django-i-celery-1-ustanovka/][Перевод документации]]
 * Что такое map-reduce
   Это процесс решения больших задач при помощи разбивки данных на части и решения задач с частями данных на разных машинах. MapReduce состоит из обязательных шагов:
   1. Map — разбить данные на блоки (присвоить каждой записи некоторый ключ блока)
